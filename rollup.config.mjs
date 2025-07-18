@@ -17,10 +17,10 @@ import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 const config = {
-    input: "src/index.js",
+    input: "src/index.mjs",
     output: {
         esModule: true,
-        file: "dist/index.js",
+        file: "dist/index.mjs",
         format: "es",
         sourcemap: true,
     },

@@ -31257,19 +31257,24 @@ var githubExports = requireGithub();
 */
 
 
-try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = coreExports.getInput("who-to-greet");
-    coreExports.info(`Hello ${nameToGreet}!`);
 
-    // Get the current time and set it as an output variable
-    const time = new Date().toTimeString();
-    coreExports.setOutput("time", time);
+function index () {
+    try {
+        // `who-to-greet` input defined in action metadata file
+        const nameToGreet = coreExports.getInput("who-to-greet");
+        coreExports.info(`Hello ${nameToGreet}!`);
 
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(githubExports.context.payload, undefined, 2);
-    coreExports.info(`The event payload: ${payload}`);
-} catch (error) {
-    coreExports.setFailed(error.message);
+        // Get the current time and set it as an output variable
+        const time = new Date().toTimeString();
+        coreExports.setOutput("time", time);
+
+        // Get the JSON webhook payload for the event that triggered the workflow
+        const payload = JSON.stringify(githubExports.context.payload, undefined, 2);
+        coreExports.info(`The event payload: ${payload}`);
+    } catch (error) {
+        coreExports.setFailed(error.message);
+    }
 }
-//# sourceMappingURL=index.js.map
+
+export { index as default };
+//# sourceMappingURL=index.mjs.map
