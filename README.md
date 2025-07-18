@@ -12,7 +12,7 @@ A simple composite GitHub Action to run [`minver-cli`](https://github.com/adamra
 If your needs are straight forward, you can call this simply like:
 ```yaml
 - name: Get semantic version
-  uses: oatcake-development/minver-gh-action@v0.0.1
+  uses: oatcake-development/minver-gh-action@v0.0.1-beta.1
   id: minver
 
 - run: echo "Version is ${{ steps.minver.outputs.version }}"
@@ -38,7 +38,7 @@ jobs:
 
       - name: Get semantic version using MinVer
         id: minver
-        uses: oatcake-development/minver-gh-action@v0.0.1
+        uses: oatcake-development/minver-gh-action@v0.0.1-beta.1
 
       - name: Export VERSION environment variable
         run: echo "VERSION=${{ steps.minver.outputs.version }}" >> $GITHUB_ENV
