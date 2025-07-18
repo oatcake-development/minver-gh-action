@@ -23,25 +23,10 @@ export default {
         format: 'esm',
         sourcemap: true,
     },
-    external: [
-        '@actions/core',
-        '@actions/github'
-    ],
+    external: [],
     plugins: [
         resolve({ preferBuiltins: true }),
         commonjs(),
     ],
     preserveEntrySignatures: 'strict',
-    onwarn: (warning, warn) => {
-        if (warning.code === 'CIRCULAR_DEPENDENCY') {
-            if (
-                warning.importer.includes('@actions/core') ||
-                warning.importer.includes('@actions/github')
-            ) {
-                // Suppress known safe circular warnings
-                return;
-            }
-        }
-        warn(warning);
-    },
 };
