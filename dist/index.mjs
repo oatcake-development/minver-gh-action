@@ -31262,7 +31262,7 @@ function index () {
     try {
         // `who-to-greet` input defined in action metadata file
         const nameToGreet = coreExports.getInput("who-to-greet");
-        coreExports.info(`Hello ${nameToGreet}!`);
+        coreExports.setOutput(`Hello ${nameToGreet}!`);
 
         // Get the current time and set it as an output variable
         const time = new Date().toTimeString();
