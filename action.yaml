@@ -1,6 +1,6 @@
 name: 'MinVer Version'
 description: 'Run minver-cli and output the calculated semantic version'
-author: 'Lee Williams <lee@example.com>'
+author: 'Oatcake Development <contact@oatcakedevelopment.co.uk>'
 branding:
   icon: 'tag'
   color: 'blue'
@@ -8,6 +8,7 @@ branding:
 outputs:
   version:
     description: 'The semantic version as calculated by MinVer.'
+    value: ${{ steps.minver.outputs.version }}
 
 runs:
   using: 'composite'
@@ -21,5 +22,5 @@ runs:
       id: minver
       shell: bash
       run: |
-        version=$(minver)
+        version=$(minver -v e)
         echo "version=$version" >> "$GITHUB_OUTPUT"
