@@ -15,7 +15,7 @@ runs:
     - name: Install MinVer CLI
       shell: bash
       run: |
-        dotnet tool install --global minver-cli@6.0.0
+        dotnet tool install --global minver-cli --version 6.0.0
 
     - name: Run MinVer
       id: minver
