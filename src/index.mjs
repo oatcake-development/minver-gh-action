@@ -21,7 +21,7 @@ export default function () {
     try {
         // `who-to-greet` input defined in action metadata file
         const nameToGreet = core.getInput("who-to-greet");
-        core.setOutput(`Hello ${nameToGreet}!`);
+        core.setOutput("person", nameToGreet);
 
         // Get the current time and set it as an output variable
         const time = new Date().toTimeString();

@@ -24,6 +24,11 @@ inputs:
 outputs:
   time: # id of output
     description: The time we greeted you
+  person:
+    description: The name of who we greeted
+
+
+
 
 runs:
   using: node20
