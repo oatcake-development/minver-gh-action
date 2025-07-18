@@ -13,18 +13,35 @@
  * limitations under the License.
 */
 
-import commonjs from "@rollup/plugin-commonjs";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
-const config = {
-    input: "src/index.mjs",
+export default {
+    input: 'src/index.mjs',
     output: {
-        esModule: true,
-        file: "dist/index.mjs",
-        format: "es",
+        file: 'dist/index.mjs',
+        format: 'esm',
         sourcemap: true,
     },
-    plugins: [commonjs(), nodeResolve({ preferBuiltins: true })],
+    external: [
+        '@actions/core',
+        '@actions/github'
+    ],
+    plugins: [
+        resolve({ preferBuiltins: true }),
+        commonjs(),
+    ],
+    preserveEntrySignatures: 'strict',
+    onwarn: (warning, warn) => {
+        if (warning.code === 'CIRCULAR_DEPENDENCY') {
+            if (
+                warning.importer.includes('@actions/core') ||
+                warning.importer.includes('@actions/github')
+            ) {
+                // Suppress known safe circular warnings
+                return;
+            }
+        }
+        warn(warning);
+    },
 };
-
-export default config;
