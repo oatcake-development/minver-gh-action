@@ -1,26 +1,18 @@
-# minver-gh-action
-A simple github action to enable extraction of the MinVer version number in a GitHub Action Workflow.
+# MinVer Version Action
 
-# Hello world JavaScript action
+A simple composite GitHub Action to run [`minver-cli`](https://github.com/adamralph/minver) and return the semantic version for the current repository.
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+## ✅ What It Does
 
-## Inputs
+- Installs `minver-cli` globally
+- Runs `minver`
+- Outputs the calculated version for use in workflows
 
-### `who-to-greet`
-
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-### `time`
-
-The time we greeted you.
-
-## Example usage
+## 🧪 Example Usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
-with:
-  who-to-greet: Mona the Octocat
-```
+- name: Get semantic version
+  uses: yourgithub/minver-version-action@v1
+  id: minver
+
+- run: echo "Version is ${{ steps.minver.outputs.version }}"

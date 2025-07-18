@@ -1,35 +1,25 @@
-
-# * Copyright 2025 Lee Williams
-# * Licensed under the Apache License, Version 2.0 (the "License");
-# * you may not use this file except in compliance with the License.
-# * You may obtain a copy of the License at
-# *
-# *     http://www.apache.org/licenses/LICENSE-2.0
-# *
-# * Unless required by applicable law or agreed to in writing, software
-# * distributed under the License is distributed on an "AS IS" BASIS,
-# * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# * See the License for the specific language governing permissions and
-# * limitations under the License.
-
-name: Hello World
-description: Greet someone and record the time
-
-inputs:
-  who-to-greet: # id of input
-    description: Who to greet
-    required: true
-    default: World
+name: 'MinVer Version'
+description: 'Run minver-cli and output the calculated semantic version'
+author: 'Lee Williams <lee@example.com>'
+branding:
+  icon: 'tag'
+  color: 'blue'
 
 outputs:
-  time: # id of output
-    description: The time we greeted you
-  person:
-    description: The name of who we greeted
-
-
-
+  version:
+    description: 'The semantic version as calculated by MinVer.'
 
 runs:
-  using: node20
-  main: dist/index.mjs
+  using: 'composite'
+  steps:
+    - name: Install MinVer CLI
+      shell: bash
+      run: |
+        dotnet tool install --global minver-cli@6.0.0
+
+    - name: Run MinVer
+      id: minver
+      shell: bash
+      run: |
+        version=$(minver)
+        echo "version=$version" >> "$GITHUB_OUTPUT"
